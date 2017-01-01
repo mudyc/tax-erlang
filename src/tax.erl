@@ -6,7 +6,7 @@
 calc_included(Price, Rates) ->
         Taxes = maps:map(fun(Key,Tax)->
            case Tax of
-              X when is_float(X) or is_integer(X) -> Price - Price/(1+X/100.0);
+              X when is_float(X) or is_integer(X) -> round(Price - Price/(1+X/100.0));
               _ -> Tax end
         end, Rates),
         maps:merge(#{ total => Price, withouttax => lists:foldl(fun(T,Acc)->case T of T when is_float(T) or is_integer(T) -> Acc-T; _ -> Acc end end, Price, maps:values(Taxes))}, Taxes).
@@ -14,7 +14,7 @@ calc_included(Price, Rates) ->
 % total is Price + tax 
 calc_excluded(Price, Rates) ->
         Taxes = maps:map(fun(Key,Tax)->
-           case Tax of X when is_float(X) or is_integer(X) -> Price*(X/100.0);
+           case Tax of X when is_float(X) or is_integer(X) -> round(Price*(X/100.0));
            _ -> Tax end
         end, Rates),
         maps:merge(#{ withouttax => Price, total => lists:foldl(fun(T,Acc)->case T of T when is_float(T) or is_integer(T) -> Acc+T; _ -> Acc end end, Price, maps:values(Taxes))}, Taxes).
