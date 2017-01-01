@@ -15,10 +15,12 @@ tax. Additional to these there are also counties or cities that can
 set tax for goods. Zip codes differ from tax areas which in practice
 means we should not use zip code to calculate tax but there are no
 sane information by government to have these numbers. So, we do a
-shortcut: from wikipedia () we can find maximum tax rate for each state
-and we use that. It still much less than general tax range in Europe.
-Thus, there is a mapping file which maps Zip code to FIPS and FIPS we
-can map FIPS code to state, handy.
+shortcut: from wikipedia
+(https://en.wikipedia.org/wiki/Sales_taxes_in_the_United_States) we
+can find maximum tax rate for each state and we use that. It still
+much less than general tax range in Europe. Thus, there is a mapping
+file which maps Zip code to FIPS and we can map FIPS code to state,
+handy.
 
 Goods and Services Tax (GST) is used in Canada
 (https://en.wikipedia.org/wiki/Sales_taxes_in_Canada), Hong Kong,
@@ -39,7 +41,8 @@ Howto use
 > CountryCode = "US",
 > Zip = "76543",
 > Rates = tax:rates(CountryCode, Zip),
-{null, null, 5, 9} % {VatP, GstP, StateTaxP, AreaTaxP}
-> {Vat, Gst, StateTax, AreaTax, BeforeTax } = tax:calculate(100, Rates),
-{null, null, 5, 9, 86}
+#{ name=><<"Alabama">>, state_tax=>4, tax=> 2.5}
+> {Vat, Gst, StateTax, AreaTax, BeforeTax } = tax:calc_included(100, Rates),
+#{ total=>100, withouttax=>93.5, name=><<"Alabama">>, state_tax=>4, tax=> 2.5}
+
 
