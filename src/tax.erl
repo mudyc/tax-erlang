@@ -1,6 +1,6 @@
 -module(tax).
 -compile(export_all).
--export([calc_included/2,calc_excluded/2,rates/2]).
+%-export([calc_included/2,calc_excluded/2,rates/2]).
 
 % total Price includes tax, i.e Price = Net + Tax
 calc_included(Price, Rates) ->
@@ -60,7 +60,6 @@ usa(Zip) ->
 canada(Zip) ->
         Json = priv2json("canada.json"),
         Rate = maps:get(list_to_binary(string:substr(Zip, 1, 1)), Json, <<"A">>), % first is letter
-        io:format("~p~n",[Rate]),
         #{ name => maps:get(<<"name">>,Rate), gst => maps:get(<<"rate">>,Rate) }.
 
 eu(Code) ->
@@ -80,4 +79,4 @@ others(Code, Tax) ->
 priv2json(FileName) ->
         File = code:priv_dir(tax) ++ "/" ++ FileName,
         {_, Content} = file:read_file(File),
-        jsone:decode(Content).
+        jsone:decode(Content, [{object_format, map}]).
