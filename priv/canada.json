@@ -1,0 +1,22 @@
+{
+  "T": { "name": "Alberta", "rate": 5 },
+  "V": { "name": "British Columbia", "rate": 5 },
+  "R": { "name": "Manitoba", "rate": 5 },
+  "E": { "name": "New Brunswick", "rate": 15 },
+  "A": { "name": "Newfoundland & Labrador", "rate": 15 },
+  "X": { "name": "Northwest Territories", "rate": 5 },
+  "B": { "name": "Nova Scotia", "rate": 15 },
+  "X": { "name": "Nunavut", "rate": 5 },
+  "K": { "name": "Ontario", "rate": 13 },
+  "L": { "name": "Ontario", "rate": 13 },
+  "M": { "name": "Ontario", "rate": 13 },
+  "N": { "name": "Ontario", "rate": 13 },
+  "P": { "name": "Ontario", "rate": 13 },
+  "G": { "name": "Provence de Québec", "rate": 5 },
+  "H": { "name": "Provence de Québec", "rate": 5 },
+  "J": { "name": "Provence de Québec", "rate": 5 },
+  "K": { "name": "Provence de Québec", "rate": 5 },
+  "C": { "name": "Prince Edward Island", "rate": 15 },
+  "S": { "name": "Saskatchewan", "rate": 5 },
+  "Y": { "name": "Yukon Territory", "rate": 5 }
+}

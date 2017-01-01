@@ -1,0 +1,45 @@
+Sales tax, GST and other tax calculations
+=========================================
+
+This is an erlang project which has one method to calculate tax for
+single price.
+
+Tax system is a global nightmare. There are services that should
+provide you the solution but if you want to start from something very
+small, say one man's web service, you want to do things as cheap as
+possible.
+
+There are countries that do not have any tax system by goverment. Like
+USA is one but it has states and each state has own state
+tax. Additional to these there are also counties or cities that can
+set tax for goods. Zip codes differ from tax areas which in practice
+means we should not use zip code to calculate tax but there are no
+sane information by government to have these numbers. So, we do a
+shortcut: from wikipedia () we can find maximum tax rate for each state
+and we use that. It still much less than general tax range in Europe.
+Thus, there is a mapping file which maps Zip code to FIPS and FIPS we
+can map FIPS code to state, handy.
+
+Goods and Services Tax (GST) is used in Canada
+(https://en.wikipedia.org/wiki/Sales_taxes_in_Canada), Hong Kong,
+India, Malaysia, New Zealand, Singapore and Australia. In Canada the
+tax differs by province and that can be determined by first letter of
+Zip (or postal code).
+
+In Europe all countries have taxes and that should be easy
+(jsonvat.com, https://github.com/adamcooke/json-vat). Also similar
+mapping is used with other countries
+(https://en.wikipedia.org/wiki/Value-added_tax).
+
+
+Howto use
+---------
+
+> Price = 100,
+> CountryCode = "US",
+> Zip = "76543",
+> Rates = tax:rates(CountryCode, Zip),
+{null, null, 5, 9} % {VatP, GstP, StateTaxP, AreaTaxP}
+> {Vat, Gst, StateTax, AreaTax, BeforeTax } = tax:calculate(100, Rates),
+{null, null, 5, 9, 86}
+

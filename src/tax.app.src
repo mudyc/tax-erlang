@@ -1,0 +1,7 @@
+{application, tax, [
+    {description,  "Tax calculator"},
+    {vsn,          "2.9"},
+    {applications, [kernel, stdlib]},
+    {modules, []},
+    {env, []}
+]}.
